@@ -1,0 +1,19 @@
+button {
+    width: 40em;
+    height: 3em;
+}
+
+input.form{
+    width: 40em;
+    height: 3em;
+}
+
+button.cor {
+    background-color: #2F9E41;
+    color: #fff;
+}
+
+button.cor:hover {
+    background-color: #2F9E41;
+    color: #fff;
+}
