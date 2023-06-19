@@ -40,9 +40,8 @@ export const AuthProvider = ({ children }) => {
 
     }
 
-    const loginWithEmail = async (email, password) => {
+    const loginByEmail = async (email, password) => {
         try {
-            console.log(email, password);
             const userCredential = await loginWithEmail(email, password);
             if (userCredential) {
                 setUser(userCredential.user.accessToken);
@@ -68,7 +67,7 @@ export const AuthProvider = ({ children }) => {
     // Valor fornecido pelo provedor do contexto
     const authContextValue = {
         user,
-        loginWithEmail,
+        loginByEmail,
         loginByGoogle,
         logoutContext,
         pushNotify

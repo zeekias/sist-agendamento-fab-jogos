@@ -2,18 +2,16 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { FcGoogle } from 'react-icons/fc';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import Notify from 'simple-notify'
-import 'simple-notify/dist/simple-notify.min.css'
-
 const logo = require('../../images/IFMA-LOGO.png');
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isToHidePassword, setIsToHidePassword] = useState(true)
+    const [isToHidePassword, setIsToHidePassword] = useState(true);
+    const [ableButtonLogin, setAbleButtonLogin] = useState(true);
     const authContext = useContext(AuthContext);
 
-    const handleLoginWithGoogle = async() => {
+    const handleLoginWithGoogle = async () => {
         const result = await authContext.loginByGoogle();
 
         if (result.status) {
@@ -27,24 +25,29 @@ export default function Login() {
         setIsToHidePassword(!isToHidePassword);
     }
     const handleLoginWithEmail = async () => {
-
+        setAbleButtonLogin(false);
         if (!email) {
             authContext.pushNotify('warning', 'Preencha todos os campos', 'O campo e-mail não pode ficar em branco!');
+            setAbleButtonLogin(true);
             return false;
         }
         if (!password) {
             authContext.pushNotify('warning', 'Preencha todos os campos', 'O campo senha não pode ficar em branco!');
+            setAbleButtonLogin(true);
             return false;
         }
 
-        const result = await authContext.loginWithEmail(email, password);
+        const result = await authContext.loginByEmail(email, password);
 
         if (result.status) {
-            authContext.pushNotify('sucess', result.text, 'Entrando!');
+            authContext.pushNotify('sucess', 'result.text', 'Entrando!');
             return true;
         }
 
-        authContext.pushNotify('error', result.text, 'Email ou senha inválidos!');
+        authContext.pushNotify('error', 'result.text', 'Email ou senha inválidos!');
+
+        setAbleButtonLogin(true);
+
     };
 
     return (
@@ -75,7 +78,7 @@ export default function Login() {
                             <label htmlFor="check" className="ml-1">Manter-se conectado?</label>
                         </div>
                     </div>
-                    <button className="w-full py-4 border rounded-md shadow bg-green-500 hover:bg-green-800" onClick={() => handleLoginWithEmail()}> <span className='text-white font-bold'>Login</span></button><br />
+                    <button className="w-full py-4 border rounded-md shadow bg-green-500 hover:bg-green-800" onClick={() => handleLoginWithEmail()} disabled={!ableButtonLogin} > <span className='text-white font-bold'>Login</span></button>
                     <a href="" className="ml-3">Esqueceu sua senha?</a>
                     <a href="">Crie sua conta</a>
                 </div>
