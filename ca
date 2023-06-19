@@ -1,0 +1,65 @@
+[33mcommit 2ffdc0d1662caf10eac93e663fc97c4785b24576[m[33m ([m[1;36mHEAD -> [m[1;32mDaniloCalendario[m[33m, [m[1;31morigin/DaniloCalendario[m[33m)[m
+Author: DaN <danilosm721@gmail.com>
+Date:   Mon Jun 19 15:55:09 2023 -0300
+
+    Adição do calendário ao dashboard mas falta ajustar a tela
+
+[33mcommit 1a68a15aa5df83ec12ef917289fe012ba6ca91fe[m
+Author: Ezequiel Magalhães <ezequiel@csfdigital.corp>
+Date:   Mon Jun 19 14:09:10 2023 -0300
+
+    Bug Notify Sucess
+
+[33mcommit 83c5f497fa6a029b5258424efaecbab3840d77e2[m
+Author: Ezequiel Magalhães <ezequiel@csfdigital.corp>
+Date:   Mon Jun 19 13:59:24 2023 -0300
+
+    Bug Login
+
+[33mcommit eda658763bd543189513c2a662ffa04934ea3f21[m[33m ([m[1;32mDevelop[m[33m)[m
+Author: Ezequiel Magalhães <ezequiel@csfdigital.corp>
+Date:   Mon Jun 19 13:50:41 2023 -0300
+
+    Google alert
+
+[33mcommit ca93493dc039f0e2ed3d03edd3a30ab4e953dc3c[m
+Author: Ezequiel Magalhães <ezequiel@csfdigital.corp>
+Date:   Mon Jun 19 13:45:24 2023 -0300
+
+    Notificacoes PopUp
+
+[33mcommit dc9ef45b0aa944335714f0344fc3e6de274100d9[m
+Author: Ezequiel Magalhães <ezequiel@csfdigital.corp>
+Date:   Mon Jun 19 13:15:17 2023 -0300
+
+    Login com google icon
+
+[33mcommit 8cef61175a3ee2edbabcc9ee7b6435ac6938bc1a[m
+Author: Ezequiel Magalhães <ezequiel@csfdigital.corp>
+Date:   Mon Jun 19 13:11:19 2023 -0300
+
+    Login com google
+
+[33mcommit f85aac3f1674dc6be8b0e6538bb55a5d7acaefb7[m
+Author: Ezequiel Magalhães <ezequiel@csfdigital.corp>
+Date:   Mon Jun 19 12:52:10 2023 -0300
+
+    Login, Context, Firebase, Navbar, DashBoard
+
+[33mcommit 07bc045a4e849c36c4dd8da99d9afa55f442bcf0[m
+Author: Ezequiel Magalhães <ezequiel@csfdigital.corp>
+Date:   Mon Jun 19 10:37:28 2023 -0300
+
+    Estrutura das pastas, yarn e tailwind
+
+[33mcommit d80c548e4bca34f01d1c8487a07397f694637715[m
+Author: Ezequiel Magalhães <ezequiel@csfdigital.corp>
+Date:   Mon Jun 19 10:10:48 2023 -0300
+
+    Estrutura das pastas, yarn e tailwind
+
+[33mcommit d02ef7a49ee12c507ba6bd0c9e8fd75b23c470d5[m
+Author: Ezequiel Magalhães <ezequiel@csfdigital.corp>
+Date:   Mon Jun 19 08:52:43 2023 -0300
+
+    Initialize project using Create React App
