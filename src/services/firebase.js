@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-
+import { getFirestore } from "firebase/firestore";
 import { getAuth, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -59,5 +59,19 @@ export async function loginWithGoogle() {
 
 }
 
+export async function searchAdminByEmail(email) {
+  console.log(email);
+  const adminUsersRef = collection(db, "admin-users");
+  const q = query(adminUsersRef, where("email", "==", email));
+  const querySnapshot = await getDocs(q);
+  let result = null;
+  querySnapshot.forEach((doc) => {
+    result = doc.data();
+  });
+  return result;
+}
+
+
+export const db = getFirestore(app);
 
 export default app;
