@@ -55,7 +55,7 @@ export default function Mes(props) {
     };
 
     return (
-        <div className="relative left-3">
+        <div className="relative">
             <div className="text-green-400 text-3xl font-bold">
                 {nomeMes}, {ano}
             </div>
@@ -70,7 +70,7 @@ export default function Mes(props) {
                     <li className="flex-row w-48 border border-white">SÁBADO</li>
                 </ul>
             </div>
-            <div>
+            <div className="">
                 {renderizaLinhas()}
             </div>
         </div>
