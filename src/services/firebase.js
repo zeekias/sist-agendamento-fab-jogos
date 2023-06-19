@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { collection, query, where, getDocs, doc, addDoc  } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, addDoc } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -73,15 +73,22 @@ export async function searchAdminByEmail(email) {
 
 export async function bookAnEventByDate(date, duration, eventName, participants, description) {
   const year = date.getFullYear();
-  const month = date.getMonth() + 1; 
-  await addDoc(collection(db, "events", year, month), {
-    name: eventName,
-    participants: participants, 
-    description: description,
-    date: date,
-    duration: duration,
-    status: false
-  });
+  const month = date.getMonth() + 1;
+
+  try {
+    await addDoc(collection(db, "events", year, month), {
+      name: eventName,
+      participants: participants,
+      description: description,
+      date: date,
+      duration: duration,
+      status: false
+    });
+    return true;
+  } catch (error) {
+    return false;
+  }
+
 }
 
 export const db = getFirestore(app);
