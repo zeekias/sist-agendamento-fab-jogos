@@ -13,11 +13,11 @@ export default function Login() {
     const [isToHidePassword, setIsToHidePassword] = useState(true)
     const authContext = useContext(AuthContext);
 
-    const handleLoginWithGoogle = () => {
-        const result = authContext.loginByGoogle();
+    const handleLoginWithGoogle = async() => {
+        const result = await authContext.loginByGoogle();
 
         if (result.status) {
-            authContext.pushNotify('sucess', result.text, 'Entrando!');
+            authContext.pushNotify('sucess', 'Login bem-sucedido!', 'Entrando!');
             return true;
         }
 
@@ -26,7 +26,7 @@ export default function Login() {
     const handleHidePassword = () => {
         setIsToHidePassword(!isToHidePassword);
     }
-    const handleLoginWithEmail = () => {
+    const handleLoginWithEmail = async () => {
 
         if (!email) {
             authContext.pushNotify('warning', 'Preencha todos os campos', 'O campo e-mail não pode ficar em branco!');
@@ -37,7 +37,7 @@ export default function Login() {
             return false;
         }
 
-        const result = authContext.loginWithEmail(email, password);
+        const result = await authContext.loginWithEmail(email, password);
 
         if (result.status) {
             authContext.pushNotify('sucess', result.text, 'Entrando!');

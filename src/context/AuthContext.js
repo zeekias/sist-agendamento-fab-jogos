@@ -8,7 +8,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState('');
 
-    const pushNotify = (statusUp, titleUp, textUp )=>{
+    const pushNotify = (statusUp='', titleUp='', textUp='' )=>{
         new Notify({
           status: statusUp,
           title: titleUp,
