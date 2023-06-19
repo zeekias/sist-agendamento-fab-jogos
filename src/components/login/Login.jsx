@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-
+import { FcGoogle } from 'react-icons/fc'
 const logo = require('../../images/IFMA-LOGO.png');
 
 export default function Login() {
@@ -23,7 +23,9 @@ export default function Login() {
             <main className="w-[50%] flex flex-col justify-center items-center">
                 <p className="mb-4 text-5xl font-extrabold leading-none tracking-tight text-green-500 md:text-5xl lg:text-6xl dark:text-white">AGGENDER</p>
                 <div className='w-1/2 flex flex-col gap-3'>
-                    <button className="w-full py-4 border rounded-md shadow" onClick={()=>handleLoginWithGoogle()}>Login com o Google</button><br />
+                    <button className="w-full py-4 border rounded-md shadow flex items-center justify-center gap-3" onClick={() => handleLoginWithGoogle()}>
+                       <FcGoogle /> <span className='font-bold'> Login com o Google </span>
+                    </button>
                     <div className='flex flex-col gap-3'>
                         <input className="w-full p-2 border rounded-md" type="text" placeholder="Email" size="25px" value={email}
                             onChange={(e) => setEmail(e.target.value)}></input>
