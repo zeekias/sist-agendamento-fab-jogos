@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../navbar/Navbar'
+import Calendario from '../calendario/calendario'
 
 export default function Dashboard() {
     return (
@@ -8,7 +9,7 @@ export default function Dashboard() {
                 <Navbar />
             </header>
             <main>
-                {/* CalendarioAqui */}
+                <Calendario />
             </main>
 
         </div>

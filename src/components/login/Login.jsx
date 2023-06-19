@@ -55,7 +55,7 @@ export default function Login() {
             <div className="md:hidden lg:flex w-[40%] justify-center items-center"><img src={logo} alt="" /></div>
             <main className="w-[50%] flex flex-col justify-center items-center">
                 <p className="mb-4 text-5xl font-extrabold leading-none tracking-tight text-green-500 md:text-5xl lg:text-6xl dark:text-white">AGGENDER</p>
-                <div className='md:w-full lg:w-1/2 flex flex-col gap-3'>
+                <div className='w-1/2 flex flex-col gap-3'>
                     <button className="w-full py-4 border rounded-md shadow flex items-center justify-center gap-3" onClick={() => handleLoginWithGoogle()}>
                         <FcGoogle /> <span className='font-bold'> Login com o Google </span>
                     </button>
