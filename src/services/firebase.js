@@ -71,14 +71,16 @@ export async function searchAdminByEmail(email) {
   return result;
 }
 
-export async function bookAnEventByDate(date, deadline, eventName, participants, description) {
+export async function bookAnEventByDate(date, duration, eventName, participants, description) {
   const year = date.getFullYear();
   const month = date.getMonth() + 1; 
   await addDoc(collection(db, "events", year, month), {
     name: eventName,
     participants: participants, 
     description: description,
-    date: date
+    date: date,
+    duration: duration,
+    status: false
   });
 }
 
