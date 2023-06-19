@@ -40,11 +40,11 @@ export default function Login() {
         const result = await authContext.loginByEmail(email, password);
 
         if (result.status) {
-            authContext.pushNotify('sucess', 'result.text', 'Entrando!');
+            authContext.pushNotify('sucess', result.text, 'Entrando!');
             return true;
         }
 
-        authContext.pushNotify('error', 'result.text', 'Email ou senha inválidos!');
+        authContext.pushNotify('error', result.text, 'Email ou senha inválidos!');
 
         setAbleButtonLogin(true);
 

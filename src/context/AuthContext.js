@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react';
 import firebase, { loginWithEmail, loginWithGoogle, logout } from '../services/firebase';
 import Notify from 'simple-notify'
 import 'simple-notify/dist/simple-notify.min.css'
+import {AiOutlineSafety } from 'react-icons/ai';
 
 export const AuthContext = createContext();
 
@@ -16,7 +17,7 @@ export const AuthProvider = ({ children }) => {
           effect: 'fade',
           speed: 300,
           customClass: null,
-          customIcon: null,
+          customIcon: statusUp === 'sucess' ? '&#9745;' : null,
           showIcon: true,
           showCloseButton: true,
           autoclose: true,
