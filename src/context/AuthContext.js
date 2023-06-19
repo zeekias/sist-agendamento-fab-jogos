@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import firebase, { loginWithEmail, loginWithGoogle, logout } from '../services/firebase';
+import firebase, { loginWithEmail, loginWithGoogle, logout, searchAdminByEmail, bookAnEventByDate } from '../services/firebase';
 import Notify from 'simple-notify'
 import 'simple-notify/dist/simple-notify.min.css'
 import {AiOutlineSafety } from 'react-icons/ai';
@@ -8,6 +8,11 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    const bookEvent = async(date, duration, eventName, participants, description) =>{
+        const result = bookAnEventByDate(date, duration, eventName, participants, description);
+    }
 
     const pushNotify = (statusUp='', titleUp='', textUp='' )=>{
         new Notify({
@@ -45,6 +50,9 @@ export const AuthProvider = ({ children }) => {
         try {
             const userCredential = await loginWithEmail(email, password);
             if (userCredential) {
+                const searchResult = await searchAdminByEmail(email);
+                if(searchResult) setIsAdmin(true);
+                
                 setUser(userCredential.user.accessToken);
                 return { status: true, text: 'Login bem-sucedido!' };
             }
@@ -52,6 +60,7 @@ export const AuthProvider = ({ children }) => {
             return { status: false, text: 'Credenciais inválidas. Tente novamente.' };
         } catch (error) {
             console.log(error);
+            return { status: false, text: 'Credenciais inválidas. Tente novamente.' };
         }
     };
 
