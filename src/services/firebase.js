@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -16,7 +16,9 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-export function loginWithEmail(email, password) {
+const provider = new GoogleAuthProvider();
+
+export async function loginWithEmail(email, password) {
 
   try {
     const userCredential = signInWithEmailAndPassword(auth, email, password);
@@ -37,6 +39,25 @@ export function logout() {
   }
 }
 
+
+export async function loginWithGoogle() {
+
+  try {
+    const result = await signInWithPopup(auth, provider)
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    return { status: true, userToken: token }
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const email = error.customData.email;
+    const credential = GoogleAuthProvider.credentialFromError(error);
+
+    console.error(errorCode, errorMessage, email, credential);
+    return { status: false, userToken: '' }
+  }
+
+}
 
 
 export default app;

@@ -1,12 +1,24 @@
 import React, { createContext, useState } from 'react';
-import firebase, { loginWithEmail, logout } from '../services/firebase';
+import firebase, { loginWithEmail, loginWithGoogle, logout } from '../services/firebase';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState('');
 
-    const login = async (email, password) => {
+    const loginByGoogle = async () => {
+        const result = await loginWithGoogle();
+
+        if (result.status) {
+            setUser(result.userToken);
+            return true;
+        }
+
+        return false;
+
+    }
+
+    const loginWithEmail = async (email, password) => {
         try {
             console.log(email, password);
             const userCredential = await loginWithEmail(email, password);
@@ -34,7 +46,8 @@ export const AuthProvider = ({ children }) => {
     // Valor fornecido pelo provedor do contexto
     const authContextValue = {
         user,
-        login,
+        loginWithEmail,
+        loginByGoogle,
         logoutContext
     };
 
