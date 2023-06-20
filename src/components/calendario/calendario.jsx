@@ -74,18 +74,19 @@ function classNames(...classes) {
 
 export default function Calendario() {
 
-  
+
 
   const [meetings, setMeetings] = useState(meetingsExample);
   const authContext = useContext(AuthContext);
-
+  const [isOpen, setIsOpen] = useState(false);
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
   let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
-  const [ monthNumber, setMonthNumber] = useState(selectedDay.getMonth() + 1);
+  const [monthNumber, setMonthNumber] = useState(selectedDay.getMonth() + 1);
   const [yearNumber, setYearNumber] = useState(selectedDay.getFullYear())
   let firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
   const [snapshot, loading, error] = useCollection(collection(db, "events", yearNumber.toString(), monthNumber.toString()));
+  
   useEffect(() => {
     const fetchData = async () => {
       const collectionRef = collection(db, "events", yearNumber.toString(), monthNumber.toString());
@@ -96,7 +97,7 @@ export default function Calendario() {
     };
     fetchData();
   }, [monthNumber, yearNumber])
-  
+
   let days = eachDayOfInterval({
     start: firstDayCurrentMonth,
     end: endOfMonth(firstDayCurrentMonth),
@@ -123,14 +124,14 @@ export default function Calendario() {
   function previousMonth() {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
     setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
-    setMonthNumber(firstDayCurrentMonth.getMonth()+1);
+    setMonthNumber(firstDayCurrentMonth.getMonth() + 1);
     setYearNumber(firstDayCurrentMonth.getFullYear());
   }
 
   function nextMonth() {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
     setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
-    setMonthNumber(firstDayCurrentMonth.getMonth()+1);
+    setMonthNumber(firstDayCurrentMonth.getMonth() + 1);
     setYearNumber(firstDayCurrentMonth.getFullYear());
   }
 
@@ -138,26 +139,13 @@ export default function Calendario() {
     isSameDay(parseISO(meeting.startDatetime), selectedDay)
   );
 
-  const handleBookEvent = (eventName = 'MARATONA DE JOGOS', owner = 'Ezequiel', participants = ['Ezequiel', "Jordan", 'Danilo'], description = 'Jogos Doidos', startDatetime = '2022-06-20T13:00', endDatetime = '2023-07-21T13:00') => {
-    const mee = {
-      id: 1,
-      eventName: eventName,
-      owner: owner,
-      imageUrl:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      participants: participants,
-      description: description,
-      startDatetime: new Date(startDatetime),
-      endDatetime: new Date(endDatetime),
-    };
-
-    authContext.bookEvent(mee);
-
+  const handleBookEvent = () => {
+    setIsOpen(true);
   }
 
   return (
-    <div className="pt-16">
-      <Modal isOpen={true} />
+    <div className="pt-16 relative">
+      <Modal isOpen={isOpen} />
       <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
