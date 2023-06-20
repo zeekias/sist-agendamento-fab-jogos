@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { collection, query, where, getDocs, doc, addDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, addDoc, setDoc, getDoc, serverTimestamp  } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -71,25 +71,37 @@ export async function searchAdminByEmail(email) {
   return result;
 }
 
-export async function bookAnEventByDate(eventName, owner, participants, description, startDatetime, endDatetime) {
+export async function bookAnEventByDate(eventName, owner, participants, description, startDatetimeStr, endDatetimeStr) {
+  const startDatetime = new Date(startDatetimeStr);
+  const endDatetime = new Date(endDatetimeStr);
   const year = startDatetime.getFullYear();
   const month = startDatetime.getMonth() + 1;
-
+  console.log(startDatetime, endDatetime)
+  
+  const collectionRef = collection(db, "events", year.toString(), month.toString());
+  const docCollectionRef = doc(db, "events", year.toString(), month.toString(), "events");
   try {
-    await addDoc(collection(db, "events", year, month), {
+    const collectionSnapshot = await getDoc(docCollectionRef);
+    if (!collectionSnapshot.exists()) {
+      await setDoc(docCollectionRef, {});
+    }
+
+    await addDoc(collectionRef, {
       eventName: eventName,
       participants: participants,
       description: description,
       startDatetime: startDatetime,
       endDatetime: endDatetime,
+      owner: owner,
       status: false,
-      owner: owner
+      timestamp: serverTimestamp()
     });
+
     return true;
   } catch (error) {
+    console.log(error);
     return false;
   }
-
 }
 
 export const db = getFirestore(app);
