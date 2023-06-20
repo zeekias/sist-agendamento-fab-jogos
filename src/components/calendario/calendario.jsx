@@ -122,14 +122,14 @@ export default function Calendario() {
   function previousMonth() {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
     setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
-    setMonthNumber(firstDayCurrentMonth.getMonth());
+    setMonthNumber(firstDayCurrentMonth.getMonth()+1);
     setYearNumber(firstDayCurrentMonth.getFullYear());
   }
 
   function nextMonth() {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
     setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
-    setMonthNumber(firstDayCurrentMonth.getMonth());
+    setMonthNumber(firstDayCurrentMonth.getMonth()+1);
     setYearNumber(firstDayCurrentMonth.getFullYear());
   }
 
