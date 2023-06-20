@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.2.1",
     "date-fns": "^2.30.0",
     "firebase": "^9.22.2",
+    "headlessui": "^0.0.0",
     "heroicons": "^2.0.18",
     "react": "^18.2.0",
     "react-awesome-calendar": "^1.0.14",
