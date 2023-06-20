@@ -12,7 +12,8 @@ export default function Modal(props) {
     const [startDatetime, setStartDatetime] = useState(null);
     const [endDatetime, setEndDatetime] = useState(null);
 
-    const handleBookEvent = (eventName, owner, participants, description, startDatetime, endDatetime) => {
+    const handleBookEvent = async() => {
+        if(!eventName) return;
         const mee = {
             id: 1,
             eventName: eventName,
@@ -22,10 +23,8 @@ export default function Modal(props) {
             startDatetime: new Date(startDatetime),
             endDatetime: new Date(endDatetime),
         };
-
-        authContext.bookEvent(mee);
-
-        const result = authContext.bookEvent(mee);
+        const result = await authContext.bookEvent(mee);
+        console.log(result)
         if (result.status) {
             authContext.pushNotify('Success', 'Solicitação enviada', 'Aguarde a resposta');
             props.setIOpen(false);

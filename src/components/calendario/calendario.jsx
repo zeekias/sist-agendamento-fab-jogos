@@ -23,7 +23,7 @@ import { ptBR } from 'date-fns/locale';
 import { AuthContext } from "../../context/AuthContext";
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { db } from "../../services/firebase";
-import Modal from "../modal/modal";
+import Modal from "../modal/Modal";
 
 const meetingsExample = [
   {
@@ -93,7 +93,7 @@ export default function Calendario() {
       const querySnapshot = await getDocs(collectionRef);
       const resultExtract = extractEventData(querySnapshot);
       console.log(resultExtract);
-      setMeetings([...resultExtract]);
+      setMeetings([...meetings, ...resultExtract]);
     };
     fetchData();
   }, [monthNumber, yearNumber])
@@ -155,14 +155,14 @@ export default function Calendario() {
               </h2>
               <button
                 type="button"
-                onClick={previousMonth}
+                onClick={()=>previousMonth()}
                 className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
               >
                 <span className="sr-only">Anterior</span>
                 <BsArrowLeftCircleFill className="w-5 h-5" aria-hidden="true" />
               </button>
               <button
-                onClick={nextMonth}
+                onClick={()=>nextMonth()}
                 type="button"
                 className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
               >

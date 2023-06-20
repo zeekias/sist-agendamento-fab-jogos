@@ -71,7 +71,7 @@ export async function searchAdminByEmail(email) {
   return result;
 }
 
-export async function bookAnEventByDate(eventName, owner, participants, description, startDatetimeStr, endDatetimeStr) {
+export async function bookAnEventByDate(eventName, owner, participants, description, startDatetimeStr="2023-06-20T20:00:00Z", endDatetimeStr ="2023-06-20T20:00:00Z") {
   const startDatetime = new Date(startDatetimeStr);
   const endDatetime = new Date(endDatetimeStr);
   const year = startDatetime.getFullYear();
