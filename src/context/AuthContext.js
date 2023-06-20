@@ -9,8 +9,8 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
 
-    const bookEvent = async(date, duration, eventName, participants, description, owner) =>{
-        const result = bookAnEventByDate(date, duration, eventName, participants, description);
+    const bookEvent = async(eventName, owner, participants, description, startDatetime, endDatetime) =>{
+        const result = bookAnEventByDate(eventName, owner, participants, description, startDatetime, endDatetime);
     }
 
     const pushNotify = (statusUp='', titleUp='', textUp='' )=>{

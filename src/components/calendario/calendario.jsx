@@ -23,7 +23,7 @@ import { ptBR } from 'date-fns/locale';
 const meetingsExample = [
   {
     id: 1,
-    name: "Leslie Alexander",
+    owner: "Leslie Alexander",
     imageUrl:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     startDatetime: "2022-05-11T13:00",
@@ -31,7 +31,7 @@ const meetingsExample = [
   },
   {
     id: 2,
-    name: "Michael Foster",
+    owner: "Michael Foster",
     imageUrl:
       "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     startDatetime: "2022-05-20T09:00",
@@ -39,7 +39,7 @@ const meetingsExample = [
   },
   {
     id: 3,
-    name: "Dries Vincent",
+    owner: "Dries Vincent",
     imageUrl:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     startDatetime: "2022-05-20T17:00",
@@ -47,7 +47,7 @@ const meetingsExample = [
   },
   {
     id: 4,
-    name: "Leslie Alexander",
+    owner: "Leslie Alexander",
     imageUrl:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     startDatetime: "2022-06-09T13:00",
@@ -55,7 +55,7 @@ const meetingsExample = [
   },
   {
     id: 5,
-    name: "Michael Foster",
+    owner: "Michael Foster",
     imageUrl:
       "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     startDatetime: "2022-05-13T14:00",
@@ -69,7 +69,6 @@ function classNames(...classes) {
 
 export default function Calendario() {
   const [meetings, setMeetings] = useState(meetingsExample);
-  const [newMeeting, setNewMeeting] = useState({});
 
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
@@ -94,6 +93,23 @@ export default function Calendario() {
   let selectedDayMeetings = meetings.filter((meeting) =>
     isSameDay(parseISO(meeting.startDatetime), selectedDay)
   );
+
+  const handleBookEvent = (eventName, owner, participants, description, startDatetime, endDatetime) => {
+    const mee = {
+      id: 1,
+      eventName: eventName,
+      owner: owner,
+      imageUrl:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      participants: participants,
+      description: description,
+      startDatetime: startDatetime,
+      endDatetime: endDatetime,
+    };
+
+
+
+  }
 
   return (
     <div className="pt-16">
@@ -222,7 +238,7 @@ function Meeting({ meeting }) {
         className="flex-none w-10 h-10 rounded-full"
       />
       <div className="flex-auto">
-        <p className="text-gray-900">{meeting.name}</p>
+        <p className="text-gray-900">{meeting.owner}</p>
         <p className="mt-0.5">
           <time dateTime={meeting.startDatetime}>
             {format(startDateTime, "h:mm a")}
