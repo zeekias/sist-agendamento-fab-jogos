@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import Login from './components/login/Login';
 import { AuthContext } from './context/AuthContext';
 import Dashboard from './components/dashboard/Dashboard';
+
 function App() {
   const authContext = useContext(AuthContext);
   return (

@@ -23,6 +23,7 @@ import { ptBR } from 'date-fns/locale';
 import { AuthContext } from "../../context/AuthContext";
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { db } from "../../services/firebase";
+import Modal from "../modal/modal";
 
 const meetingsExample = [
   {
@@ -156,7 +157,7 @@ export default function Calendario() {
 
   return (
     <div className="pt-16">
-      aqui
+      <Modal isOpen={true} />
       <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
@@ -169,7 +170,7 @@ export default function Calendario() {
                 onClick={previousMonth}
                 className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
               >
-                <span className="sr-only">Previous month</span>
+                <span className="sr-only">Anterior</span>
                 <BsArrowLeftCircleFill className="w-5 h-5" aria-hidden="true" />
               </button>
               <button
@@ -177,7 +178,7 @@ export default function Calendario() {
                 type="button"
                 className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
               >
-                <span className="sr-only">Next month</span>
+                <span className="sr-only">Próximo</span>
                 <BsArrowRightCircleFill
                   className="w-5 h-5"
                   aria-hidden="true"
