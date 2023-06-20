@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { HiDotsVertical } from "react-icons/hi";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
@@ -17,10 +17,12 @@ import {
   startOfToday,
 } from "date-fns";
 import { Fragment, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
 
 import { ptBR } from 'date-fns/locale';
 import { AuthContext } from "../../context/AuthContext";
-import Modal from "../modal/modal";
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { db } from "../../services/firebase";
 
 const meetingsExample = [
   {
@@ -70,34 +72,72 @@ function classNames(...classes) {
 }
 
 export default function Calendario() {
+
+  
+
   const [meetings, setMeetings] = useState(meetingsExample);
   const authContext = useContext(AuthContext);
 
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
   let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
+  const [ monthNumber, setMonthNumber] = useState(selectedDay.getMonth() + 1);
+  const [yearNumber, setYearNumber] = useState(selectedDay.getFullYear())
   let firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
-
+  const [snapshot, loading, error] = useCollection(collection(db, "events", yearNumber.toString(), monthNumber.toString()));
+  useEffect(() => {
+    const fetchData = async () => {
+      const collectionRef = collection(db, "events", yearNumber.toString(), monthNumber.toString());
+      const querySnapshot = await getDocs(collectionRef);
+      const resultExtract = extractEventData(querySnapshot);
+      console.log(resultExtract);
+      setMeetings([...resultExtract]);
+    };
+    fetchData();
+  }, [monthNumber, yearNumber])
+  
   let days = eachDayOfInterval({
     start: firstDayCurrentMonth,
     end: endOfMonth(firstDayCurrentMonth),
   });
 
+  function formatDate(date) {
+    const formattedDate = new Date(date.seconds * 1000).toISOString();
+    return formattedDate.slice(0, 16);
+  }
+
+  function extractEventData(snapshot) {
+    return snapshot?.docs?.map((doc) => {
+      const data = doc.data();
+      if (data.startDatetime) {
+        data.startDatetime = formatDate(data.startDatetime);
+      }
+      if (data.endDatetime) {
+        data.endDatetime = formatDate(data.endDatetime);
+      }
+      return data;
+    });
+  }
+
   function previousMonth() {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
     setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
+    setMonthNumber(firstDayCurrentMonth.getMonth());
+    setYearNumber(firstDayCurrentMonth.getFullYear());
   }
 
   function nextMonth() {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
     setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
+    setMonthNumber(firstDayCurrentMonth.getMonth());
+    setYearNumber(firstDayCurrentMonth.getFullYear());
   }
 
   let selectedDayMeetings = meetings.filter((meeting) =>
     isSameDay(parseISO(meeting.startDatetime), selectedDay)
   );
 
-  const handleBookEvent = (eventName, owner, participants, description, startDatetime, endDatetime) => {
+  const handleBookEvent = (eventName = 'MARATONA DE JOGOS', owner = 'Ezequiel', participants = ['Ezequiel', "Jordan", 'Danilo'], description = 'Jogos Doidos', startDatetime = '2022-06-20T13:00', endDatetime = '2023-07-21T13:00') => {
     const mee = {
       id: 1,
       eventName: eventName,
@@ -211,7 +251,7 @@ export default function Calendario() {
                 {format(selectedDay, "dd/MMM, yyy", { locale: ptBR })}
               </time>
             </h2>
-            <button className="w-1/2 py-2 border rounded-md shadow flex items-center justify-center gap-3 hover:bg-green-500 hover:font-bold hover:text-white" onClick={()=>handleBookEvent()}><span className="">Agendar um Evento</span></button>
+            <button className="w-1/2 py-2 border rounded-md shadow flex items-center justify-center gap-3 hover:bg-green-500 hover:font-bold hover:text-white" onClick={() => handleBookEvent()}><span className="">Agendar um Evento</span></button>
             <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
               {selectedDayMeetings.length > 0 ? (
                 selectedDayMeetings.map((meeting) => (
