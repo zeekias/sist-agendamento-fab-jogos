@@ -2,6 +2,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { HiDotsVertical } from "react-icons/hi";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 
+
 import {
   add,
   eachDayOfInterval,
@@ -17,6 +18,7 @@ import {
   startOfToday,
 } from "date-fns";
 import { Fragment, useState } from "react";
+import ptBR from "date-fns/locale/pt-BR";
 
 const meetings = [
   {
@@ -97,14 +99,14 @@ export default function Example() {
           <div className="md:pr-14">
             <div className="flex items-center">
               <h2 className="flex-auto font-semibold text-gray-900">
-                {format(firstDayCurrentMonth, "MMMM yyyy")}
+                {format(firstDayCurrentMonth, "MMMM yyyy", { locale: ptBR })}
               </h2>
               <button
                 type="button"
                 onClick={previousMonth}
                 className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
               >
-                <span className="sr-only">Previous month</span>
+                <span className="sr-only">Anterior</span>
                 <BsArrowLeftCircleFill className="w-5 h-5" aria-hidden="true" />
               </button>
               <button
@@ -112,7 +114,7 @@ export default function Example() {
                 type="button"
                 className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
               >
-                <span className="sr-only">Next month</span>
+                <span className="sr-only">Próximo</span>
                 <BsArrowRightCircleFill
                   className="w-5 h-5"
                   aria-hidden="true"
@@ -143,23 +145,23 @@ export default function Example() {
                     className={classNames(
                       isEqual(day, selectedDay) && "text-white",
                       !isEqual(day, selectedDay) &&
-                        isToday(day) &&
-                        "text-red-500",
+                      isToday(day) &&
+                      "text-red-500",
                       !isEqual(day, selectedDay) &&
-                        !isToday(day) &&
-                        isSameMonth(day, firstDayCurrentMonth) &&
-                        "text-gray-900",
+                      !isToday(day) &&
+                      isSameMonth(day, firstDayCurrentMonth) &&
+                      "text-gray-900",
                       !isEqual(day, selectedDay) &&
-                        !isToday(day) &&
-                        !isSameMonth(day, firstDayCurrentMonth) &&
-                        "text-gray-400",
+                      !isToday(day) &&
+                      !isSameMonth(day, firstDayCurrentMonth) &&
+                      "text-gray-400",
                       isEqual(day, selectedDay) && isToday(day) && "bg-red-500",
                       isEqual(day, selectedDay) &&
-                        !isToday(day) &&
-                        "bg-gray-900",
+                      !isToday(day) &&
+                      "bg-gray-900",
                       !isEqual(day, selectedDay) && "hover:bg-gray-200",
                       (isEqual(day, selectedDay) || isToday(day)) &&
-                        "font-semibold",
+                      "font-semibold",
                       "mx-auto flex h-8 w-8 items-center justify-center rounded-full"
                     )}
                   >
@@ -172,8 +174,8 @@ export default function Example() {
                     {meetings.some((meeting) =>
                       isSameDay(parseISO(meeting.startDatetime), day)
                     ) && (
-                      <div className="w-1 h-1 rounded-full bg-sky-500"></div>
-                    )}
+                        <div className="w-1 h-1 rounded-full bg-sky-500"></div>
+                      )}
                   </div>
                 </div>
               ))}
@@ -181,9 +183,9 @@ export default function Example() {
           </div>
           <section className="mt-12 md:mt-0 md:pl-14">
             <h2 className="font-semibold text-gray-900">
-              Schedule for{" "}
-              <time dateTime={format(selectedDay, "yyyy-MM-dd")}>
-                {format(selectedDay, "MMM dd, yyy")}
+              Agenda para {" "}
+              <time dateTime={format(selectedDay, "dd-MMMM-yyyy", { locale: ptBR })}>
+                {format(selectedDay, "dd/MM/yyyy", { locale: ptBR })}
               </time>
             </h2>
             <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
@@ -192,7 +194,7 @@ export default function Example() {
                   <Meeting meeting={meeting} key={meeting.id} />
                 ))
               ) : (
-                <p>No meetings for today.</p>
+                <p>Sem atividades para hoje</p>
               )}
             </ol>
           </section>
