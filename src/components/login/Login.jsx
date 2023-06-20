@@ -51,14 +51,21 @@ export default function Login() {
     };
 
     return (
-        <div className="min-w-full min-h-screen flex justify-center items-center p-6">
-            <div className="md:hidden lg:flex w-[40%] justify-center items-center"><img src={logo} alt="" /></div>
-            <main className="w-[50%] flex flex-col justify-center items-center">
-                <p className="mb-4 text-5xl font-extrabold leading-none tracking-tight text-green-500 md:text-5xl lg:text-6xl dark:text-green-500">AGGENDER</p>
-                <div className='w-1/2 flex flex-col gap-3'>
-                    <button className="w-full py-4 border rounded-md shadow flex items-center justify-center gap-3" onClick={() => handleLoginWithGoogle()}>
+        <div className="min-w-full min-h-screen flex justify-center items-center xl:p-6">
+            <div className="hidden xl:flex xl:w-1/2 xl:h-1/2 justify-center items-center"><img src={logo} alt="IFMA LOGO" /></div>
+            <main className="w-full xl:w-[50%] flex flex-col justify-center items-center">
+                <p className="mb-12 text-4xl font-extrabold leading-none tracking-tight text-green-500 md:text-5xl lg:text-6xl dark:text-green-500">AGGENDER</p>
+                <div className='w-[80%] xl:w-1/2 flex flex-col gap-3'>
+                    <button className="mb-2 w-full py-4 border rounded-md shadow flex items-center justify-center gap-3" onClick={() => handleLoginWithGoogle()}>
                         <FcGoogle /> <span className='font-bold'> Login com o Google </span>
                     </button>
+
+                    <div className='w-full flex justify-between items-center'>
+                        <div className='w-[40%] border'></div>
+                        <span className='font-bold'>ou</span>
+                        <div className='w-[40%] border'></div>
+                    </div>
+
                     <div className='flex flex-col gap-3'>
                         <input className="w-full p-2 border rounded-md" type="e-mail" required placeholder="Email" size="25px" value={email}
                             onChange={(e) => setEmail(e.target.value)} />

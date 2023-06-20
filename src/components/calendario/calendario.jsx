@@ -143,9 +143,9 @@ export default function Calendario() {
   }
 
   return (
-    <div className="pt-16 relative">
+    <div className="pt-16 relative h-full min-w-full flex items-center justify-center">
       <Modal isOpen={isOpen} setIOpen={()=>setIsOpen(!isOpen)} />
-      <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
+      <div className="px-4  sm:px-7 md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
             <div className="flex items-center">
