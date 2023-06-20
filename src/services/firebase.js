@@ -79,6 +79,7 @@ export async function bookAnEventByDate(eventName, owner, participants, descript
   console.log(startDatetime, endDatetime)
   
   const collectionRef = collection(db, "events", year.toString(), month.toString());
+
   const docCollectionRef = doc(db, "events", year.toString(), month.toString(), "events");
   try {
     const collectionSnapshot = await getDoc(docCollectionRef);
