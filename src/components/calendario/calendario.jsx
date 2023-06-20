@@ -1,8 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { HiDotsVertical } from "react-icons/hi";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
-
-
 import {
   add,
   eachDayOfInterval,
@@ -20,7 +18,9 @@ import {
 import { Fragment, useState } from "react";
 import ptBR from "date-fns/locale/pt-BR";
 
-const meetings = [
+import { ptBR } from 'date-fns/locale';
+
+const meetingsExample = [
   {
     id: 1,
     name: "Leslie Alexander",
@@ -67,7 +67,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Calendario() {
+  const [meetings, setMeetings] = useState(meetingsExample);
+  const [newMeeting, setNewMeeting] = useState({});
+
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
   let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
@@ -98,8 +101,8 @@ export default function Example() {
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
             <div className="flex items-center">
-              <h2 className="flex-auto font-semibold text-gray-900">
-                {format(firstDayCurrentMonth, "MMMM yyyy", { locale: ptBR })}
+              <h2 className="flex-auto font-semibold text-gray-900 capitalize">
+                {format(firstDayCurrentMonth, "MMMM/yyyy", { locale: ptBR })}
               </h2>
               <button
                 type="button"
@@ -183,18 +186,21 @@ export default function Example() {
           </div>
           <section className="mt-12 md:mt-0 md:pl-14">
             <h2 className="font-semibold text-gray-900">
-              Agenda para {" "}
-              <time dateTime={format(selectedDay, "dd-MMMM-yyyy", { locale: ptBR })}>
-                {format(selectedDay, "dd/MM/yyyy", { locale: ptBR })}
+              Eventos Agendados{" "}
+              <time dateTime={format(selectedDay, "yyyy-MM-dd")} className="capitalize">
+                {format(selectedDay, "dd/MMM, yyy", { locale: ptBR })}
               </time>
             </h2>
+            <button className="w-1/2 py-2 border rounded-md shadow flex items-center justify-center gap-3 hover:bg-green-500 hover:font-bold hover:text-white"><span className="">Agendar um Evento</span></button>
             <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
               {selectedDayMeetings.length > 0 ? (
                 selectedDayMeetings.map((meeting) => (
                   <Meeting meeting={meeting} key={meeting.id} />
                 ))
               ) : (
-                <p>Sem atividades para hoje</p>
+                <div>
+                  <p>Um pouco vazio por aqui...</p>
+                </div>
               )}
             </ol>
           </section>

@@ -71,7 +71,7 @@ export async function searchAdminByEmail(email) {
   return result;
 }
 
-export async function bookAnEventByDate(date, duration, eventName, participants, description) {
+export async function bookAnEventByDate(date, duration, eventName, participants, description, owner) {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
 
@@ -82,7 +82,8 @@ export async function bookAnEventByDate(date, duration, eventName, participants,
       description: description,
       date: date,
       duration: duration,
-      status: false
+      status: false,
+      owner: owner
     });
     return true;
   } catch (error) {
