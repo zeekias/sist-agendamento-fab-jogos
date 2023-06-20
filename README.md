@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# Aggender - Sistema de Agendamento da Fábrica de Inovação
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bem-vindo ao Aggender! Este é um sistema de agendamento desenvolvido para a Fábrica de Inovação. Ele permite que você agende e gerencie seus compromissos e reservas de forma eficiente e conveniente.
+Este sistema está sendo desenvolvido como parte de nota da etapa 3 da disciplina de Engenharia de Software do curso de Sistemas de Informação (4º Período).
 
-## Available Scripts
+## Recursos
 
-In the project directory, you can run:
+- Agendamento de compromissos: Agende compromissos e reserve horários de forma fácil e rápida.
+- Gerenciamento de disponibilidade: Verifique a disponibilidade de recursos, salas ou equipamentos antes de agendar um compromisso.
+- Lembretes e notificações: Receba lembretes automáticos sobre seus compromissos agendados.
+- Acesso multiusuário: Permite que diferentes usuários acessem o sistema com diferentes níveis de permissão.
+- Histórico de agendamentos: Acompanhe seu histórico de agendamentos anteriores e visualize informações relevantes.
 
-### `yarn start`
+## Como usar
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Faça login: Acesse o sistema utilizando suas credenciais de usuário. Caso ainda não possua uma conta, entre em contato com o administrador para obter acesso.
+2. Navegue pelo sistema: Explore as diferentes seções para agendar compromissos, verificar disponibilidade e visualizar seu histórico.
+3. Agende um compromisso: Selecione a data e horário desejados, escolha os recursos necessários e confirme o agendamento.
+4. Gerencie seus compromissos: Edite ou cancele compromissos existentes, adicione lembretes ou altere informações pertinentes.
+5. Verifique a disponibilidade: Antes de agendar um compromisso, verifique a disponibilidade dos recursos desejados para evitar conflitos.
+6. Mantenha-se informado: Fique atento aos lembretes e notificações enviados pelo sistema para garantir que você não perca seus compromissos agendados.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Requisitos do Sistema
 
-### `yarn test`
+- Navegador web moderno (recomendamos Google Chrome, Mozilla Firefox ou Microsoft Edge).
+- Conexão com a internet.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tecnologias Utilizadas
 
-### `yarn build`
+- Linguagem de programação: [HTML/CSS/JS]
+- Framework: ReactJS
+- Banco de dados: FireBase
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Divirta-se agendando com o Aggender!

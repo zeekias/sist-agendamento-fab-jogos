@@ -20,6 +20,7 @@ import { Fragment, useState } from "react";
 
 import { ptBR } from 'date-fns/locale';
 import { AuthContext } from "../../context/AuthContext";
+import Modal from "../modal/modal";
 
 const meetingsExample = [
   {
@@ -96,7 +97,7 @@ export default function Calendario() {
     isSameDay(parseISO(meeting.startDatetime), selectedDay)
   );
 
-  const handleBookEvent = (eventName='MARATONA DE JOGOS', owner='Ezequiel', participants=['Ezequiel', "Jordan", 'Danilo'], description='Jogos Doidos', startDatetime='2022-06-20T13:00', endDatetime='2023-07-21T13:00') => {
+  const handleBookEvent = (eventName, owner, participants, description, startDatetime, endDatetime) => {
     const mee = {
       id: 1,
       eventName: eventName,
@@ -115,7 +116,7 @@ export default function Calendario() {
 
   return (
     <div className="pt-16">
-      aqui
+      <Modal isOpen={true} />
       <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
