@@ -77,7 +77,6 @@ export default function Calendario() {
 
 
   const [meetings, setMeetings] = useState(meetingsExample);
-  const authContext = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
@@ -96,7 +95,7 @@ export default function Calendario() {
       setMeetings([...resultExtract]);
     };
     fetchData();
-  }, [monthNumber, yearNumber])
+  }, [monthNumber, yearNumber, snapshot,isOpen])
 
   let days = eachDayOfInterval({
     start: firstDayCurrentMonth,
@@ -145,7 +144,7 @@ export default function Calendario() {
 
   return (
     <div className="pt-16 relative">
-      <Modal isOpen={isOpen} />
+      <Modal isOpen={isOpen} setIOpen={()=>setIsOpen(!isOpen)} />
       <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">

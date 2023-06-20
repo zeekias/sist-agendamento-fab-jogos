@@ -5,7 +5,6 @@ import { AuthContext } from "../../context/AuthContext";
 
 export default function Modal(props) {
     const authContext = useContext(AuthContext);
-    const isOpen = { props }
     const handleBookEvent = (eventName = 'MARATONA DE JOGOS', owner = 'Ezequiel', participants = ['Ezequiel', "Jordan", 'Danilo'], description = 'Jogos Doidos', startDatetime = '2022-06-20T13:00', endDatetime = '2023-07-21T13:00') => {
         const mee = {
           id: 1,
@@ -24,7 +23,7 @@ export default function Modal(props) {
       }
     
     return (
-        <div className={`${isOpen && "hidden"}`}>
+        <div className={`${props.isOpen ? "abrido" : "hidden"} absolute`}>
             <div className="max-w-screen max-h-screen flex justify-center items-center ">
                 <div className='w-80 h-96 flex flex-col justify-center items-center border-2 border-gray-300'>
                     <p className='text-3xl font-bold h-8'>HORÁRIO</p>
