@@ -1,8 +1,11 @@
 import React from "react";
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Modal(props) {
+    const isOpen = { props }
+    const authContext = useContext(AuthContext);
     return (
-        <div className='min-w-full min-h-screen flex justify-center items-center p-5 m-2'>
+        <div className={`min - w - full min-h-screen flex justify-center items-center p-5 m-2 ${!isOpen && "hidden"}`}>
             <div className='w-80 h-96 flex flex-col justify-center items-center border-2 border-gray-300'>
                 <p className='text-3xl font-bold h-8'>HORÁRIO</p>
                 <div className="w-52 h-56  flex flex-col justify-center items-center">
@@ -31,6 +34,5 @@ export default function Modal(props) {
                 </div>
             </div>
         </div>
-
     )
 }

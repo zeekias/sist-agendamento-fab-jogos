@@ -16,7 +16,6 @@ import {
   startOfToday,
 } from "date-fns";
 import { Fragment, useState } from "react";
-import ptBR from "date-fns/locale/pt-BR";
 
 import { ptBR } from 'date-fns/locale';
 
