@@ -77,6 +77,7 @@ export default function Calendario() {
 
 
   const [meetings, setMeetings] = useState(meetingsExample);
+  const authContext = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
@@ -95,7 +96,7 @@ export default function Calendario() {
       setMeetings([...resultExtract]);
     };
     fetchData();
-  }, [monthNumber, yearNumber, snapshot,isOpen])
+  }, [monthNumber, yearNumber])
 
   let days = eachDayOfInterval({
     start: firstDayCurrentMonth,
