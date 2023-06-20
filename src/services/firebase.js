@@ -72,15 +72,14 @@ export async function searchAdminByEmail(email) {
 }
 
 export async function bookAnEventByDate(eventName, owner, participants, description, startDatetime, endDatetime) {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
+  const year = startDatetime.getFullYear();
+  const month = startDatetime.getMonth() + 1;
 
   try {
     await addDoc(collection(db, "events", year, month), {
       eventName: eventName,
       participants: participants,
       description: description,
-      date: date,
       startDatetime: startDatetime,
       endDatetime: endDatetime,
       status: false,

@@ -112,6 +112,7 @@ export default function Calendario() {
 
   return (
     <div className="pt-16">
+      aqui
       <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
