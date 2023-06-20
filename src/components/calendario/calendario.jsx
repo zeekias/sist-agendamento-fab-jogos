@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { HiDotsVertical } from "react-icons/hi";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
@@ -18,6 +19,7 @@ import {
 import { Fragment, useState } from "react";
 
 import { ptBR } from 'date-fns/locale';
+import { AuthContext } from "../../context/AuthContext";
 
 const meetingsExample = [
   {
@@ -68,6 +70,7 @@ function classNames(...classes) {
 
 export default function Calendario() {
   const [meetings, setMeetings] = useState(meetingsExample);
+  const authContext = useContext(AuthContext);
 
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
@@ -93,7 +96,7 @@ export default function Calendario() {
     isSameDay(parseISO(meeting.startDatetime), selectedDay)
   );
 
-  const handleBookEvent = (eventName, owner, participants, description, startDatetime, endDatetime) => {
+  const handleBookEvent = (eventName='MARATONA DE JOGOS', owner='Ezequiel', participants=['Ezequiel', "Jordan", 'Danilo'], description='Jogos Doidos', startDatetime='2022-06-20T13:00', endDatetime='2023-07-21T13:00') => {
     const mee = {
       id: 1,
       eventName: eventName,
@@ -102,16 +105,17 @@ export default function Calendario() {
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
       participants: participants,
       description: description,
-      startDatetime: startDatetime,
-      endDatetime: endDatetime,
+      startDatetime: new Date(startDatetime),
+      endDatetime: new Date(endDatetime),
     };
 
-
+    authContext.bookEvent(mee);
 
   }
 
   return (
     <div className="pt-16">
+      aqui
       <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
@@ -206,7 +210,7 @@ export default function Calendario() {
                 {format(selectedDay, "dd/MMM, yyy", { locale: ptBR })}
               </time>
             </h2>
-            <button className="w-1/2 py-2 border rounded-md shadow flex items-center justify-center gap-3 hover:bg-green-500 hover:font-bold hover:text-white"><span className="">Agendar um Evento</span></button>
+            <button className="w-1/2 py-2 border rounded-md shadow flex items-center justify-center gap-3 hover:bg-green-500 hover:font-bold hover:text-white" onClick={()=>handleBookEvent()}><span className="">Agendar um Evento</span></button>
             <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
               {selectedDayMeetings.length > 0 ? (
                 selectedDayMeetings.map((meeting) => (

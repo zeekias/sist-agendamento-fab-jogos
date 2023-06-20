@@ -9,8 +9,9 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
 
-    const bookEvent = async(eventName, owner, participants, description, startDatetime, endDatetime) =>{
-        const result = bookAnEventByDate(eventName, owner, participants, description, startDatetime, endDatetime);
+    const bookEvent = async({eventName, owner, participants, description, startDatetime, endDatetime}) =>{
+        const result = await bookAnEventByDate(eventName, owner, participants, description, startDatetime, endDatetime);
+        console.log(result);
     }
 
     const pushNotify = (statusUp='', titleUp='', textUp='' )=>{
@@ -79,7 +80,8 @@ export const AuthProvider = ({ children }) => {
         loginByEmail,
         loginByGoogle,
         logoutContext,
-        pushNotify
+        pushNotify,
+        bookEvent
     };
 
     return (
