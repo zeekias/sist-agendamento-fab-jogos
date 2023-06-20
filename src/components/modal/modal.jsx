@@ -70,7 +70,7 @@ export default function Modal(props) {
 
             </div>
             <div className="flex justify-center items-center">
-                <button className="w-60 py-2 m-2 border rounded-md shadow hover:font-bold hover:text-white hover:bg-green-500" onClick={handleBookEvent(eventName, owner, participants, description, startDatetime, endDatetime)}>Agendar</button>
+                <button className="w-60 py-2 m-2 border rounded-md shadow hover:font-bold hover:text-white hover:bg-green-500" onClick={handleBookEvent()}>Agendar</button>
                 <button className="w-60 py-2 m-2 border rounded-md shadow hover:font-bold hover:text-white hover:bg-red-500" onClick={() => props.setIOpen(false)}>Fechar</button>
             </div>
         </div>
