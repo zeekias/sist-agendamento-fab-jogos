@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
     const bookEvent = async({eventName, owner, participants, description, startDatetime, endDatetime}) =>{
         const result = await bookAnEventByDate(eventName, owner, participants, description, startDatetime, endDatetime);
         console.log(result);
+        return result;
     }
 
     const pushNotify = (statusUp='', titleUp='', textUp='' )=>{
