@@ -23,6 +23,7 @@ import { ptBR } from 'date-fns/locale';
 import { AuthContext } from "../../context/AuthContext";
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { db } from "../../services/firebase";
+import Modal from "../modal/modal";
 
 const meetingsExample = [
   {
